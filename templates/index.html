@@ -1,0 +1,16 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+    Tushare Web
+{% endblock %}
+
+{% block content %}
+    <article style="text-align: center">
+        <header>
+            <h1>🌹请选择操作🌹</h1>
+        </header>
+        <a href="{{ url_for('eyeglass') }}" role="button">👓查看数据库中所有公司及其股票代码👓</a>
+        <hr>
+        <a href="{{ url_for('diamond') }}" role="button">💎查看某个公司的资产负债表和利润表💎</a>
+    </article>
+{% endblock %}

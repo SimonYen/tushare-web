@@ -1,0 +1,44 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+    查看所有公司及其股票代码
+{% endblock %}
+
+{% block content %}
+    <article>
+
+        <p>👓提示：电脑端按Ctrl+F键可以搜索，共有{{ nac | length }}条数据。</p>
+
+        <figure>
+            <table role="grid">
+                <thead>
+                <tr>
+                    <th scope="col">序号</th>
+                    <th scope="col">股票代码</th>
+                    <th scope="col">股票名称</th>
+                    <th scope="col">英文全称</th>
+                    <th scope="col">地域</th>
+                    <th scope="col">所属行业</th>
+                    <th scope="col">上市时间</th>
+                </tr>
+                </thead>
+
+                {% for index ,row in nac.iterrows() %}
+                    <tbody>
+                    <tr>
+                        <th scope="col">{{ index }}</th>
+                        <th scope="col">{{ row['股票代码'] }}</th>
+                        <th scope="col">{{ row['股票名称'] }}</th>
+                        <th scope="col">{{ row['英文全称'] }}</th>
+                        <th scope="col">{{ row['地域'] }}</th>
+                        <th scope="col">{{ row['所属行业'] }}</th>
+                        <th scope="col">{{ row['上市时间'] }}</th>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+
+            </table>
+        </figure>
+
+    </article>
+{% endblock %}

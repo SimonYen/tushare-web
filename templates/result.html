@@ -1,0 +1,106 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+    查询结果
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header style="text-align: center">
+            <h1>
+                自动计算{{ name }}的三个指标
+            </h1>
+            <p>⌚起始时间:{{ t1 }}</p>
+            <P>⏰结束时间:{{ t2 }}</P>
+        </header>
+        <p>流动比率：{{ x }}</p>
+        <p>资产负债率：{{ y }}</p>
+        <p>资产净利润率：{{ z }}</p>
+    </article>
+
+    <article>
+        <header style="text-align: center">
+            <h1>{{ name }}资产负债表</h1>
+            <p>⌚起始时间:{{ t1 }}</p>
+            <P>⏰结束时间:{{ t2 }}</P>
+        </header>
+        {% if df1 | length == 0 %}
+            <p>未找到该公司信息！！！</p>
+        {% else %}
+            <figure>
+                <table role="grid">
+                    <thead>
+                    <tr>
+                        <th scope="col">序号</th>
+                        <th scope="col">股票代码</th>
+                        <th scope="col">公告日期</th>
+                        <th scope="col">非流动资产合计</th>
+                        <th scope="col">流动资产合计</th>
+                        <th scope="col">流动负债总计</th>
+                        <th scope="col">资产合计</th>
+                        <th scope="col">负债总计</th>
+                    </tr>
+                    </thead>
+
+                    {% for index ,row in df1.iterrows() %}
+                        <tbody>
+                        <tr>
+                            <th scope="col">{{ index }}</th>
+                            <th scope="col">{{ row['股票代码'] }}</th>
+                            <th scope="col">{{ row['公告日期'] }}</th>
+                            <th scope="col">{{ row['非流动资产合计'] }}</th>
+                            <th scope="col">{{ row['流动资产合计'] }}</th>
+                            <th scope="col">{{ row['流动负债总计'] }}</th>
+                            <th scope="col">{{ row['资产总计'] }}</th>
+                            <th scope="col">{{ row['负债总计'] }}</th>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+
+                </table>
+            </figure>
+
+        {% endif %}
+    </article>
+    <article>
+        <header style="text-align: center">
+            <h1>{{ name }}利润表</h1>
+            <p>⌚起始时间:{{ t1 }}</p>
+            <P>⏰结束时间:{{ t2 }}</P>
+        </header>
+        {% if df2 | length == 0 %}
+            <p>未找到该公司信息！！！</p>
+        {% else %}
+            <figure>
+                <table role="grid">
+                    <thead>
+                    <tr>
+                        <th scope="col">序号</th>
+                        <th scope="col">股票代码</th>
+                        <th scope="col">公告日期</th>
+                        <th scope="col">利润总和</th>
+                        <th scope="col">净利润</th>
+                    </tr>
+                    </thead>
+
+                    {% for index ,row in df2.iterrows() %}
+                        <tbody>
+                        <tr>
+                            <th scope="col">{{ index }}</th>
+                            <th scope="col">{{ row['股票代码'] }}</th>
+                            <th scope="col">{{ row['公告日期'] }}</th>
+                            <th scope="col">{{ row['利润总和'] }}</th>
+                            <th scope="col">{{ row['净利润'] }}</th>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+
+                </table>
+            </figure>
+
+        {% endif %}
+
+    </article>
+
+{% endblock %}
+

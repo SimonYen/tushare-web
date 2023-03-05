@@ -1,0 +1,21 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+    查询单个公司的资产负债表和利润表
+{% endblock %}
+
+{% block content %}
+    <article>
+        <form method="get" action="{{ url_for('result') }}">
+            <label for="name">💎请输入公司股票名称</label>
+            <input type="text" id="name" name="name" placeholder="股票名称" required>
+            <label for="date1">⌚起始时间
+                <input type="date" id="date1" name="begin-date" required>
+            </label>
+            <label for="date2">⏰结束时间
+                <input type="date" id="date2" name="end-date" required>
+            </label>
+            <button type="submit">🔍查询</button>
+
+        </form>
+    </article>
+{% endblock %}
